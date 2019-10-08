@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <title>パーツ画像ウィンドウ</title>
+    <link rel="shortcut icon" href="https://priani.jellyjelly.site/favicon.ico">
+    <link rel="stylesheet" href="../../css/index.css">
+</head>
+
+<body>
+	<h1 id="top">パーツ画像ウィンドウ</h1>
+	
+	<main class="box">
+		
+		<div class="mainbox">
+			
+			<h1><img src="part.png" style="max-width: 100%;height:auto;"></h1>
+			<p>　<a href="#w1" class="backlink"><strong>・　ウィンドウ上部</strong></a>【１】～【５】</p>
+			<p>　<a href="#w2" class="backlink"><strong>・　各パーツ上部</strong></a>【６】～【９】</p>
+			<p>　<a href="#w3" class="backlink"><strong>・　各パーツの基本設定</strong></a>【１０】～【１４】</p>
+			<p>　<a href="#w4" class="backlink"><strong>・　各パーツのタイムライン設定</strong></a>【１５】～【１９】</p>
+			<p>　<a href="#change" class="backlink"><strong>・　パーツ画像の差し替え</strong></a></p>
+			<p>　<a href="#kaiten" class="backlink"><strong>・　パーツ画像の回転軸設定</strong></a></p>
+			<p>　<a href="#page" class="backlink"><strong>・　表示ページについて</strong></a></p>
+			<hr>
+			
+			<p id="w1"><strong style="background-color: #96004e;color: white;padding:2px;">■ウィンドウ上部</strong></p>
+			<p><img src="part1.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】ファイルを選択</strong>：読み込むパーツ画像ファイルを選択するためのボタンです。１度に選択できるのは１ファイルだけです。</p>
+			<p><strong>【３】パーツ画像として追加</strong>：【２】で選択したパーツ画像を読み込んでパーツ画像として追加します。画像は一番上に追加されます。</p>
+			<p><strong>【４】全て開く/全て閉じる</strong>：各パーツ画像の設定画面を全て開く/閉じるボタンです。</p>
+			<p><strong>【５】全て選択/選択解除</strong>：各パーツ画像を全て選択/選択解除できます。ここでの各パーツ画像の選択とは、プレビューでの操作ボタンと、パーツ画像ウィンドウでの「表示位置を選択パーツ全てに適用」「選択パーツ全てに適用」ボタンに対してのみの有効です。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="w2"><strong style="background-color: #713E00;color: white;padding:2px;">■各パーツ上部</strong></p>
+			<p><img src="part2.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【６】□ボタン</strong>：各パーツ画像を個別で選択するボタンです。ここでの各パーツ画像の選択とは、プレビューでの操作ボタンと、パーツ画像ウィンドウでの「表示位置を選択パーツ全てに適用」「選択パーツ全てに適用」ボタンに対してのみの有効です。</p>
+			<p><strong>【７】▼▲ボタン</strong>：各パーツ画像の重ね順を上下に移動させるボタンです。</p>
+			<p><strong>【８】×ボタン</strong>：各パーツ画像を削除するボタンです。</p>
+			<p><strong>【９】▼設定画面</strong>：各パーツ画像の設定画面の開閉します。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="w3"><strong style="background-color: #405728;color: white;padding:2px;">■各パーツの基本設定</strong></p>
+			<p><img src="part3.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１０】基本設定の入力フォーム</strong>：各パーツ画像の基本設定を入力するフォームです。基本設定は<span class="point1">タイムラインの全フレームで共通する設定</span>です。<br><br>
+			　・<strong>ファイル名</strong>：各パーツ画像のファイル名を入力します。<br><br>
+			　・<strong>表示位置</strong>：各パーツ画像のデフォルトの表示位置です。画像の中心点の位置で設定します。最初はキャンバスの中央の位置が自動で設定されています。<br><br>
+			　・<strong>サイズ</strong>：各パーツ画像の表示領域サイズです。入力されたサイズで切り取って表示されます。基本的には実際の画像ファイルと同じサイズを入力してください。<br>
+			（タイムライン設定で「表示ページ」を使う場合は、それに応じてサイズを変更してください。例えば「50×100サイズ」のページが横に3枚並んだ「150×100サイズ」のスプライト画像の場合、ここには「幅:50/高さ:100」と入力してください。）</p>
+			
+			<p><strong>【１１】適用</strong>：【１０】で入力されている内容を適用し、プレビューに反映させるためのボタンです。これを押さないと、適用されません。適用しないと、他の処理を実行した際に入力内容は破棄されます。</p>
+			
+			<p><strong>【１２】表示位置を選択パーツ全てに適用</strong>：このボタンを押したパーツ画像の、基本設定で入力している「表示位置」を、現在選択しているパーツ画像全てに適用します。「ファイル名」と「サイズ」は適用されません。</p>
+			
+			<p><strong>【１３】画像を差し替える</strong>：パーツ画像の差し替えウィンドウを表示します。「現在のパーツ画像」に表示されているパーツ画像を、選択した画像ファイルに差し替えます。パーツ画像を差し替えると、基本設定（ファイル名・表示位置・サイズ）はリセットされますが、タイムライン設定はそのままになります。<a href="#change" class="backlink" style="text-decoration-line: underline;">【パーツ画像を差し替えの詳細】</a></p>
+			
+			<p><strong>【１４】回転軸の設定</strong>：パーツ画像の回転軸設定ウィンドウを表示します。タイムライン設定で「回転」する際の基準となる位置（回転軸）を設定します。<a href="#kaiten" class="backlink" style="text-decoration-line: underline;">【パーツ画像の回転軸設定の詳細】</a></p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="w4"><strong style="background-color: #002D71;color: white;padding:2px;">■各パーツのタイムライン設定</strong></p>
+			<p><img src="part4.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１５】タイムライン設定の入力フォーム</strong>：現在表示されているフレーム番号の、各パーツ画像のタイムライン設定を入力するフォームです。タイムライン設定は<span class="point1">各フレームごとに異なる設定項目</span>です。<br><br>
+			　・<strong>拡縮</strong>：拡大率の設定で、デフォルトは「1」です。2倍にする時は「2」、0.5倍にする時は「0.5」と入力します。Xは幅の拡大率、Yは高さの拡大率です。<br><br>
+			　・<strong>移動</strong>：基本設定の表示位置からの移動距離で、デフォルトは「0」です。Xは横の移動で、正の数字だと右に、負の数字だと左に移動します。Yは縦の移動で、正の数字だと下に、負の数字だと上に移動します。単位はpxです。<br><br>
+			　・<strong>回転</strong>：回転する角度で、デフォルトは「0」です。例えば、右に45度傾ける場合は「45」、左に45度傾ける場合は「-45」と入力します。基本設定で設定した回転軸（デフォルトは画像の中央）を基準に回転します。<br><br>
+			　・<strong>不透明度</strong>：不透明度の設定で、デフォルトは「1」です。「0～1」の範囲で設定します。「0」で完全な透明、「1」で完全な不透明、「0.5」などで半透明になります。<br><br>
+			　・<strong>表示ページ</strong>：表示するページの設定で、デフォルトは「0」です。パーツ画像が「横に並んだスプライト画像」の場合に設定する項目です。そうでない場合は特に設定は不要です。<a href="#page" class="backlink" style="text-decoration-line: underline;">【表示ページについて】</a><br><br>
+			</p>
+			
+			<p><strong>【１６】左右反転</strong>：「移動X」と「回転」の数値の正負が逆になります。多分、使いにくい機能です。</p>
+			
+			<p><strong>【１７】適用</strong>：【１５】で入力されている内容を適用し、プレビューに反映させるためのボタンです。これを押さないと、適用されません。適用しないと、他の処理を実行した際に入力内容は破棄されます。</p>
+			
+			<p><strong>【１８】選択パーツ全てに適用</strong>：このボタンを押したパーツ画像の、現在入力しているタイムライン設定を、現在選択しているパーツ画像全てに適用します。</p>
+			
+			<p><strong>【１９】タイムライン設定の削除</strong>：このボタンを押したパーツ画像の、現在入力しているタイムライン設定を、デフォルトに戻します。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="change"><strong style="background-color: #4c2e00;color: white;padding:2px;">■パーツ画像の差し替え</strong></p>
+			<p><img src="partchange.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】現在のパーツ画像</strong>：差し替えの対象となる、現在のパーツ画像のファイル名が表示されています。</p>
+			<p><strong>【３】ファイルを選択</strong>：新しいパーツ画像ファイルを選択するためのボタンです。１度に選択できるのは１ファイルだけです。</p>
+			<p><strong>【４】パーツ画像の差し替え</strong>：このボタンを押すと、【２】のパーツ画像を【３】で選択したパーツ画像ファイルに差し替えます。パーツ画像を差し替えると、基本設定（ファイル名・表示位置・サイズ）はリセットされますが、タイムライン設定はそのままになります。</p>
+			<p><strong>【５】キャンセル</strong>：パーツ画像を差し替えずに、ウィンドウを閉じます。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="kaiten"><strong style="background-color: #4c2e00;color: white;padding:2px;">■パーツ画像の回転軸設定</strong></p>
+			<p><img src="kaiten.png" style="max-width: 100%;height:auto;"></p>
+			<p>タイムライン設定で「回転」する際の基準となる位置（回転軸）を設定します。</p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】回転軸設定用プレビュー</strong>：回転軸を設定するパーツ画像のみが表示されたプレビュー画面です。赤い十字マークの位置が回転軸です。プレビュー画面内をクリックすることで赤い十字マークの位置を変更できます。</p>
+			<p><strong>【３】X/Y</strong>：回転軸の位置をXとYの座標数値で表示しています。数値を入力し【４】のボタンを押すことでプレビュー画面の回転軸（赤い十字マーク）の位置を更新できます。</p>
+			<p><strong>【４】変更</strong>：プレビュー画面の回転軸（赤い十字マーク）の位置を、【３】で入力した数値に更新します。</p>
+			<p><strong>【５】回転軸を画像の中心に戻す</strong>：プレビュー画面の回転軸（赤い十字マーク）の位置を、デフォルトの位置（画像の中心）に戻します。</p>
+			<p><strong>【６】適用</strong>：回転軸の位置を、プレビュー画面の回転軸（赤い十字マーク）の位置で確定します。このボタンを押すまでは確定されません。</p>
+			<p><strong>【７】キャンセル</strong>：回転軸の位置を変更せずに、ウィンドウを閉じます。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="page"><strong style="background-color: #4c2e00;color: white;padding:2px;">■表示ページについて</strong></p>
+			<p>ぷりおアニメーカーでは、パーツ画像として「横に並べたスプライト画像」を使用できます。例えば下のような画像です。</p>
+			<p><img src="pageexp.png" style="max-width: 100%;height:auto;"></p>
+			<p>この画像は４つのページを横に並べた画像となっています。ページは左から0、1、2…と番号づけられています。</p>
+			<p><img src="pageexp2.png" style="max-width: 100%;height:auto;"></p>
+			<p>ちなみに、ぷりおアニメーカーでは横だけに並べた画像にのみ、対応しています。縦にも並べたスプライト画像は使えません。例えば下のような画像は使えません。</p>
+			<p><img src="pageexp3.png" style="max-width: 100%;height:auto;"><br>　</p>
+			<p><strong>■「横に並べたスプライト画像」を使う場合のパーツ画像の基本設定</strong></p>
+			<p>基本設定の「サイズ」の箇所は、スプライト画像全体のサイズではなく、各ページのサイズを入力します。</p>
+			<p>たとえば150×150のページを横に4つ並べた600×150のスプライト画像の場合は、パーツ画像の基本設定の「サイズ」の箇所には「幅:150、高さ:150」と入力します。</p>
+			<p><strong>■「横に並べたスプライト画像」を使う場合のパーツ画像のタイムライン設定</strong></p>
+			<p>表示ぺージにページの番号を入力することで、スプライト画像の各ページを表示することができます。</p>
+			<p>ページ番号は左から順に0、1、2…と番号づけられています。</p>
+			<p><img src="pageexp2.png" style="max-width: 100%;height:auto;"></p>
+			
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+		</div>
+		
+	</main>
+	
+</body>
+</html>

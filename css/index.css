@@ -1,0 +1,366 @@
+body
+{
+	background-color: #F5F5F5;
+	color: #4c2e00;
+}
+
+hr
+{
+	width: 100%;
+	height: 2px;
+	border: 0;
+	border-top: 2px dashed #4c2e00;
+	margin-top: 40px;
+}
+
+a:link{
+	text-decoration: none;
+}
+
+li{
+	margin-top: 20px;
+}
+
+.mainbutton
+{
+	padding-top: 20px;
+	padding-right: 40px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+	background-color: #fff1ae;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 20px;
+	border: 3px solid #4c2e00;
+	font-size: 1.6em;
+	color: #4c2e00;
+	text-decoration: none;
+}
+
+.mainbutton:hover
+{
+	background-color: #4c2e00;
+	color: white;
+	transform: scale(1.08);
+}
+
+.mainbutton:active
+{
+	transform: scale(0.9);
+}
+
+.subbutton
+{
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	background-color: #fff9e0;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 15px;
+	border: 2px dashed #4c2e00;
+	font-size: 1.2em;
+	color: #4c2e00;
+	text-decoration: none;
+	margin: 5px;
+	max-width: 100%;
+}
+
+.subbutton:hover
+{
+	background-color: #4c2e00;
+	color: white;
+	transform: scale(1.08);
+}
+
+.subbutton:active
+{
+	transform: scale(0.9);
+}
+
+.sublink
+{
+	color: white;
+}
+
+.sublink:hover
+{
+	color: #4c2e00;
+	background-color: #fff9e0;
+}
+
+.backlink
+{
+	color: #4c2e00;
+	padding: 3px;
+}
+
+.backlink:hover
+{
+	color: white;
+	background-color: #4c2e00;
+}
+.newsbox
+{
+	padding-top: 20px;
+	padding-right: 40px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+	background-color: #4c2e00;
+	text-align: center;
+	border-radius: 20px;
+	border: solid 3px #4c2e00;
+	width: 100%;
+	color: white;
+}
+
+h1
+{
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+}
+
+h2
+{
+	font-size: 1.4em;
+	font-weight: bold;
+	text-align: center;
+}
+
+summary
+{
+	cursor: pointer;
+}
+
+.setWindow
+{
+	text-align: center;
+	border: 1px solid black;
+	margin: 20px;
+	padding: 10px;
+	background-color: lightsteelblue;
+}
+
+.setTitle
+{
+	font-size: 1.2em;
+	color: black;
+}
+
+.setContent
+{
+	margin: 10px;
+}
+
+.flexbox
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.box
+{
+	margin: auto;
+	max-width: 700px;
+
+}
+
+.mainbox
+{
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	background-color: #fff9e0;
+	text-align: left;
+	border-radius: 15px;
+	border: solid 2px #4c2e00;
+	color: #4c2e00;
+}
+
+summary
+{
+	outline: none;
+	font-size: 1.2em;
+	margin-top: 10px;
+}
+
+summary:hover
+{
+	background-color: white;
+}
+
+.answer
+{
+	background-color: white;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 30px;
+	padding: 10px;
+	border: 2px solid #4c2e00;
+}
+
+.point1
+{
+	color: royalblue;
+	font-weight: bold;
+}
+
+.point2
+{
+	color: deeppink;
+	font-weight: bold;
+}
+
+.pointbox
+{
+	background-color: white;
+	border: solid 2px #4c2e00;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
+}
+
+.dlbutton
+{
+	color: #4c2e00;
+	background-color: white;
+	border: solid 3px #4c2e00;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
+	text-align: center;
+	width: 250px;
+	font-weight: bold;
+}
+
+.dlbutton:hover
+{
+	background-color: #4c2e00;
+	color: white;
+	transform: scale(1.08);
+}
+
+.dlbutton:active
+{
+	transform: scale(0.9);
+}
+
+.totop
+{
+	text-align: right;
+}
+
+table.tag
+{
+	background-color: white;
+	border-collapse: collapse;
+}
+
+td.tag
+{
+	padding: 8px;
+	border: 1px solid #808080;
+}
+
+th.tag
+{
+	padding: 8px;
+	border: 1px solid #ffffff;
+	background-color: #808080;
+	color: #ffffff;
+}
+
+.code
+{
+	background-color: #000000;
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.samplebutton
+{
+	padding: 15px;
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 25px;
+	border: 2px solid #808080;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 5px;
+	width: 180px;
+}
+
+.samplebutton:hover
+{
+	background-color: #000000;
+	color: #ffffff;
+	border: 2px solid #000000;
+	transform: scale(1.08);
+}
+
+.samplebutton:active
+{
+	transform: scale(0.9);
+}
+
+.sampleimg
+{
+	
+}
+
+.sampleimg:hover
+{
+	transform: scale(1.02);
+}
+
+.sampleimg:active
+{
+	transform: scale(0.95);
+}
+
+.codeTag
+{
+	color: skyblue;
+}
+
+.codePar
+{
+	color: lightgreen;
+}
+
+.point3
+{
+	color: seagreen;
+	font-weight: bold;
+}
+
+.samplebutton2
+{
+	padding: 5px 15px;
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 25px;
+	border: 2px solid #808080;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.samplebutton2:hover
+{
+	background-color: #000000;
+	color: #ffffff;
+	border: 2px solid #000000;
+	transform: scale(1.08);
+}
+
+.samplebutton2:active
+{
+	transform: scale(0.9);
+}
+

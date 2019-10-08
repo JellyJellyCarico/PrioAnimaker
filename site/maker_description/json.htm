@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <title>JSONデータ関係の機能</title>
+    <link rel="shortcut icon" href="https://priani.jellyjelly.site/favicon.ico">
+    <link rel="stylesheet" href="../../css/index.css">
+</head>
+
+<body>
+	<h1 id="top">JSONデータ関係の機能</h1>
+	
+	<main class="box">
+		
+		<div class="mainbox">
+			<p>目次</p>
+			<p>　<a href="#save" class="backlink"><strong>・　JSONデータの書き出し</strong></a></p>
+			<p>　<a href="#edit" class="backlink"><strong>・　JSONデータの編集</strong></a></p>
+			<p>　<a href="#load" class="backlink"><strong>・　JSONデータの読み込み</strong></a><br>　</p>
+			<p class="pointbox">
+				<strong>JSONデータ</strong><br>
+				　・ティラノスクリプトやHTMLで使うためのデータです。<br>
+				　・画像ファイルは含まれていません。
+			</p>
+			<hr>
+			<p id="save"><strong style="background-color: #4c2e00;color: white;padding:2px;">■JSONデータの書き出し</strong></p>
+			<p><img src="jsonsave.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】ぷりアニデータID</strong>：ティラノスクリプトやHTMLでアニメーションを再生する時に、それぞれのアニメーションを特定するためのIDです。同一プロジェクト内ではぷりアニデータIDが被らないように設定してください。英数字とアンダースコアのみ入力可能です。</p>
+			<p><strong>【３】画像フォルダ</strong>：パーツ画像を入れるフォルダの名前を入力します。空欄にしておくこともできます。入力する場合は英数字とアンダースコアのみ入力可能です。</p>
+			<p><strong>【４】出力形式</strong>：ティラノスクリプト用のプラグインを使う場合は「ティラノスクリプト」、HTML用のプラグインを使う場合は「HTML」を選択します。</p>
+			<p><strong>【５】書き出し</strong>：このボタンをクリックすると、現在のアニメーションのJSONデータが【６】に表示されます。コピーしてテキストソフトに貼り付け、JSONファイル（.json）として保存してください。</p>
+			<p><strong>【６】テキストボックス</strong>：【５】のボタンをクリックすると、ここにJSONデータが表示されます。</p>
+			<p><strong>【７】キャンセル</strong>：ウィンドウを閉じます。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			
+			<hr>
+			<p id="edit"><strong style="background-color: #4c2e00;color: white;padding:2px;">■JSONデータの編集</strong></p>
+			<p><img src="jsonedit.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】ファイル選択</strong>：編集したいJSONファイルを選択するためのボタンです。ShiftキーやCtrlキーを押しながら選択することで、複数のJSONファイルを同時に選択することができます。</p>
+			<p><strong>【３】出力形式</strong>：ティラノスクリプト用のプラグインを使う場合は「ティラノスクリプト」、HTML用のプラグインを使う場合は「HTML」を選択します。</p>
+			<p><strong>【４】読み込み</strong>：このボタンを押すと【２】で選択しているJSONファイルを全て読み込み、すぐ下のボックスに概要を表示します。</p>
+			<p>★読み込まれた各データそれぞれに【５】～【８】の要素が表示されます。</p>
+			<p><strong>【５】ぷりアニデータID</strong>：JSONファイルに含まれていた各データのぷりアニデータIDです。変更可。</p>
+			<p><strong>【６】フォルダ</strong>：JSONファイルに含まれていた各データの画像フォルダです。変更可。</p>
+			<p><strong>【７】パーツ画像</strong>：JSONファイルに含まれていた各データのパーツ画像一覧です。変更不可。</p>
+			<p><strong>【８】表示</strong>：該当のデータのみを個別で【１１】に表示します。【５】【６】でぷりアニデータIDや画像フォルダの入力を変更していた場合、それが反映された状態で【１１】に表示されます。</p>
+			<p><strong>【９】読み込んだファイル</strong>：読み込みが成功したJSONデータの個数と、ファイル名の一覧が表示されています。</p>
+			<p><strong>【１０】JSONファイルを結合</strong>：このボタンを押すと、「読み込んだデータ」に表示されているデータを全て結合したJSONデータを【１１】に表示します。表示されたJSONデータをコピーし、テキストソフトに貼り付けてJSONファイル（.json）として保存することで、たくさんのJSONデータを１つのJSONファイルにまとめることができます。なお、【５】【６】でぷりアニデータIDや画像フォルダの入力を変更していた場合、それが反映された状態で【１１】に表示されます。</p>
+			<p><strong>【１１】テキストボックス</strong>：【８】や【１０】をクリックして出力されたJSONデータが表示されます。</p>
+			<p><strong>【１２】キャンセル</strong>：ウィンドウを閉じます。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			
+			<hr>
+			<p id="load"><strong style="background-color: #4c2e00;color: white;padding:2px;">■JSONデータの読み込み</strong></p>
+			<p><img src="jsonload.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】ファイルを選択</strong>：読み込みたいJSONファイルを選択するためのボタンです。</p>
+			<p><strong>【３】ぷりアニデータとして読み込み</strong>：このボタンをクリックすると、【２】で選択されたファイルを読み込みます。</p>
+			<p><strong>【４】キャンセル</strong>：JSONデータを読み込まずに、ウィンドウを閉じます。<br>　</p>
+			<p><strong>※注意</strong></p>
+			<p>・JSONデータには画像ファイルが含まれていませんので、画像が表示されません。</p>
+			<p>・パーツ画像ウィンドウで各パーツの設定画面にある「画像を差し替える」をクリックし、該当するパーツ画像を選択し、「画像の差し替え」をクリックすることで画像を表示することができます。</p>
+			<p>・つまり、パーツ画像を1つずつ差し替えて表示していく必要があります。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+		</div>
+		
+	</main>
+	
+</body>
+</html>

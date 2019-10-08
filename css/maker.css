@@ -1,0 +1,336 @@
+body
+{
+	background-color: lightsteelblue;
+	color: black;
+	user-select: none;
+}
+
+a:link		{ color: black; }
+a:visited	{ color: black; }
+a:hover		{ color: black;background-color: lemonchiffon;}
+a:active	{ color: blue; }
+summary:hover { color: black;background-color: lemonchiffon;}
+
+h1
+{
+	color: black;
+	font-size: 28px;
+	text-align: center;
+}
+
+h2
+{
+	color: black;
+	font-size: 1.2em;
+	text-align: center;
+}
+
+.setWindow
+{
+	text-align: left;
+	border: 1px solid black;
+	margin: 0;
+	padding: 10px;
+	background-color: whitesmoke;
+	position: absolute;
+	overflow: auto;
+}
+
+.setTitle
+{
+	font-size: 1.3em;
+	color: white;
+	background-color: lightslategray;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: -10px;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.setContent
+{
+	margin: 10px;
+}
+
+.flexbox
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.button1
+{
+	background-color: lemonchiffon;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 1.1em;
+}
+
+.button2
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 1.1em;
+}
+
+.button3
+{
+	background-color: lightpink;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 1.1em;
+}
+
+.dragButton
+{
+	cursor: move;
+	width: 100%;
+	height: 25px;
+	margin: -10px;
+	position: absolute;
+}
+
+.partImgName0
+{
+	font-size: 1.2em;
+	color: white;
+	background-color: steelblue;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.partImgName1
+{
+	font-size: 1.2em;
+	color: white;
+	background-color: sandybrown;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+th
+{
+	width: 30%;
+}
+
+table.tlList
+{
+	border-collapse: collapse;
+}
+
+td.tlList0
+{
+	padding: 5px;
+	border: solid 1px black;
+	text-align: center;
+	background-color: white;
+}
+
+td.tlList
+{
+	padding: 5px;
+	border: solid 1px black;
+	text-align: center;
+	background-color: white;
+}
+
+td.tlList:hover
+{
+	background-color: red;
+}
+
+td.tlList2
+{
+	padding: 5px;
+	border: solid 1px black;
+	text-align: left;
+	background-color: whitesmoke;
+}
+
+td.tlList3
+{
+	padding: 5px;
+	border: solid 1px black;
+	text-align: left;
+	background-color: slategray;
+	color: white;
+}
+
+td.tlList4
+{
+	padding: 5px;
+	border: solid 1px black;
+	text-align: left;
+	background-color: sandybrown;
+	color: white;
+}
+
+table.piList
+{
+	border-collapse: collapse;
+	border: solid 1px gray;
+	margin-bottom: 3px;
+}
+
+th.piList
+{
+	background-color: aliceblue;
+	color: steelblue;
+}
+
+
+td.piList
+{
+	background-color: aliceblue;
+}
+
+
+th.piList2
+{
+	background-color: white;
+	color: steelblue;
+}
+
+
+td.piList2
+{
+	background-color: white;
+}
+
+.tlFrame
+{
+	cursor: pointer;
+}
+
+.tlListNOW
+{
+	padding: 5px;
+	border: solid 1px black;
+	text-align: center;
+	background-color: yellow;
+}
+
+.tlListNOW:hover
+{
+	background-color: red;
+}
+
+.menu
+{
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.timelineMenu
+{
+	visibility: hidden;
+	position: absolute;
+	z-index: 20;
+	background-color: whitesmoke;
+	border: solid 1px black;
+	padding: 2px;
+	opacity: 0.9;
+}
+
+.tlmenu
+{
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.alert
+{
+	box-sizing: border-box;
+	text-align: center;
+	border: 3px solid white;
+	margin: 0;
+	padding: 20px;
+	background-color: #003366;
+	color: white;
+	font-size: 1.2em;
+	position: fixed;
+	left: 50%;
+	top: 50px;
+	z-index: 50;
+	visibility: hidden;
+}
+
+.alertButton
+{
+	background-color: white;
+	color: #003366;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 1.2em;
+}
+
+.buttonIcon
+{
+	padding: 1px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.buttonIcon:hover
+{
+	height: 32px;
+	width: 32px;
+	padding: 0;
+}
+
+.buttonIcon:active
+{
+	height: 28px;
+	width: 28px;
+	padding: 2px;
+}
+
+.backIcon
+{
+	padding: 1px;
+	width: 40px;
+	height: 40px;
+}
+
+.backIcon:hover
+{
+	padding: 0;
+	width: 42px;
+	height: 42px;
+}
+
+.transIcon
+{
+	padding: 1px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.transIcon:hover
+{
+	height: 22px;
+	width: 22px;
+	padding: 0;
+}
+
+.transIcon:active
+{
+	height: 18px;
+	width: 18px;
+	padding: 2px;
+}

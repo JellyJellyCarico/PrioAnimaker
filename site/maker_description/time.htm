@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <title>タイムラインウィンドウ</title>
+    <link rel="shortcut icon" href="https://priani.jellyjelly.site/favicon.ico">
+    <link rel="stylesheet" href="../../css/index.css">
+</head>
+
+<body>
+	<h1 id="top">タイムラインウィンドウ</h1>
+	
+	<main class="box">
+		
+		<div class="mainbox">
+			
+			<h1><img src="time.png" style="max-width: 100%;height:auto;"></h1>
+			
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】各パーツ画像の番号と名前</strong>：<img src="../../img/part0.png">をクリックすることで各パーツ画像を選択・選択解除できます。ここでの各パーツ画像の選択とは、プレビューでの操作ボタンと、パーツ画像ウィンドウでの「表示位置を選択パーツ全てに適用」「選択パーツ全てに適用」ボタンに対してのみの有効です。</p>
+			<p><strong>【３】タイムライン</strong>：各フレーム・各パーツ画像のタイムライン設定の編集状況を表しています。<img src="../../img/timeline0.png" width="20" height="20">はタイムライン設定が編集されていない箇所、<img src="../../img/timeline1.png" width="20" height="20">はタイムライン設定が編集されている箇所です。現在プレビューに表示されているフレーム番号の部分は背景が黄色になっています。<img src="../../img/timeline0.png" width="20" height="20">や<img src="../../img/timeline1.png" width="20" height="20">をクリックすることで表示するフレームを変更できます。右クリックするとメニューが開き、様々な編集ができます。ドラッグで複数選択でき、複数選択中の箇所は背景は水色になります。ここでの選択は右クリックメニューの各編集操作に対してのみ有効です。<a href="#menu" class="backlink" style="text-decoration-line: underline;">【右クリックメニューの詳細】</a></p>
+			<p><strong>【４】全て選択/選択解除</strong>：各パーツ画像を全て選択/選択解除できます。ここでの各パーツ画像の選択とは、プレビューでの操作ボタンと、パーツ画像ウィンドウでの「表示位置を選択パーツ全てに適用」「選択パーツ全てに適用」ボタンに対してのみの有効です。</p>
+			<p><strong>【５】60%/100%</strong>：60%をクリックするとタイムラインの表示を少し小さくできます。100%をクリックすると戻ります。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="menu"><strong style="background-color: #4c2e00;color: white;padding:2px;">■右クリックメニュー</strong></p>
+			<p><img src="time_menu.png" style="max-width: 100%;height:auto;"></p>
+			<p>メニュー上部に、現在編集しようとしている対象のフレーム番号とパーツ画像番号が表示されています。ドラッグで複数選択している場合は「範囲選択」とだけ表示されます。</p>
+			<p><strong>●コピー</strong>：現在編集対象になっている箇所のタイムライン設定をコピーします。</p>
+			<p><strong>●カット</strong>：現在編集対象になっている箇所のタイムライン設定をカットします。</p>
+			<p><strong>●ペースト</strong>：コピーまたはカットしたタイムライン設定を現在編集対象になっている箇所に貼り付けます。</p>
+			<p><strong>●アニメーション補間</strong>：現在編集対象になっている箇所の前後のタイムライン設定を元に、アニメーションを補完するためのウィンドウを開きます。<a href="#anim" class="backlink" style="text-decoration-line: underline;">【アニメーション補間の詳細】</a></p>
+			<p><strong>●簡易アニメーション補間</strong>：現在編集対象になっている箇所の前後のタイムライン設定を元にアニメーションを補完します。この場合、アニメーション補間タイプは「減速」になり、全てのタイムライン設定項目を編集します。</p>
+			<p><strong>●タイムライン設定の編集</strong>：現在編集対象になっている箇所のタイムライン設定を編集するためのウィンドウを開きます。<a href="#edit" class="backlink" style="text-decoration-line: underline;">【タイムライン設定の編集の詳細】</a></p>
+			<p><strong>●タイムライン設定の削除</strong>：現在編集対象になっている箇所のタイムライン設定を削除します。</p>
+			<p><strong>●フレームの追加</strong>：現在編集対象になっている箇所の前後にフレームを追加するためのウィンドウを開きます。<a href="#frame" class="backlink" style="text-decoration-line: underline;">【フレームの追加の詳細】</a></p>
+			<p><strong>●フレームの削除</strong>：現在編集対象になっている箇所のフレームを削除します。</p>
+			<p><strong>●マークの色を変える</strong>：現在編集対象になっている箇所のマークの色を変更します。<img src="../../img/timeline2.png" width="20" height="20">→<img src="../../img/timeline3.png" width="20" height="20">→<img src="../../img/timeline1.png" width="20" height="20">の順で色が変更されていきます。アニメーションへの影響はないので、特定の箇所を目立たせるための目印に使用できます。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="anim"><strong style="background-color: #4c2e00;color: white;padding:2px;">■アニメーション補間</strong></p>
+			<p><img src="animehokan.png" style="max-width: 100%;height:auto;"></p>
+			<p>現在編集対象になっている箇所の前後のタイムライン設定を元に、アニメーションを補完するためのウィンドウです。</p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】アニメーション補間範囲</strong>：ここに表示されている範囲の箇所のタイムライン設定を変更し、アニメーションを補完します。</p>
+			<p><strong>【３】アニメーション補間タイプ</strong>：基本的には「等速」「加速」「減速」のどれかを使用してください。「オーバー加速」と「オーバー減速」はなんとなく作ってみたものの、使い勝手は良くないというか、変な動きになります。</p>
+			<p><strong>【４】参照フレーム</strong>：アニメーション補間では、変形前フレームに設定されたフレームと、変形後フレームに設定されたフレームの間を補完する動きを作成します。ここは自動で入力されているので、基本的にはいじる必要はないかと思います。</p>
+			<p><strong>【５】アニメーション補間対象項目</strong>：デフォルトでは全ての項目にチェックが入っています。チェックを外した項目のタイムライン設定は変更されなくなります。アニメーション補間してほしくない項目はチェックを外してください。</p>
+			<p><strong>【６】アニメーション補間実行</strong>：このボタンをクリックすると、タイムライン設定が編集され、アニメーションが補間されます。</p>
+			<p><strong>【７】キャンセル</strong>：タイムライン設定を編集せず、ウィンドウを閉じます。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="edit"><strong style="background-color: #4c2e00;color: white;padding:2px;">■タイムライン設定の編集</strong></p>
+			<p><img src="time_edit.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】編集範囲</strong>：ここに表示されている範囲の箇所のタイムライン設定を編集します。</p>
+			<p><strong>【３】タイムライン設定</strong>：ここに数値を入力します。未入力の箇所は編集されません。<br>
+				　・<strong>拡縮</strong>…デフォルト状態は「1」です。「2」で2倍、「0.5」で0.5倍の状態になります。<br>
+				　・<strong>移動</strong>…デフォルト状態は「0」です。基本設定の表示位置からの移動距離です。単位はpxです。<br>
+				　・<strong>回転</strong>…デフォルト状態は「0」です。「15」で右に15度回転した状態になります。<br>
+				　・<strong>不透明度</strong>…デフォルト状態は「1」です。「0」で完全に透明、「1」で完全に不透明、「0.5」で半透明の状態になります。<br>
+				　・<strong>表示ページ</strong>…デフォルト状態は「0」です。<br>
+			</p>
+			<p><strong>【４】代入する</strong>：編集範囲のタイムライン設定を、【３】で入力した内容に変更します。</p>
+			<p><strong>【５】加算する</strong>：編集範囲のタイムライン設定に、【３】で入力した内容を加算します。</p>
+			<p><strong>【６】キャンセル</strong>：タイムライン設定を編集せず、ウィンドウを閉じます。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="frame"><strong style="background-color: #4c2e00;color: white;padding:2px;">■フレームの追加</strong></p>
+			<p><img src="frame.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>【１】ウィンドウ上部</strong>：ウィンドウ上部をドラッグするとウィンドウを移動できます。</p>
+			<p><strong>【２】追加するフレーム数</strong>：1以上の数を入力してください。</p>
+			<p><strong>【３】左に追加</strong>：上部に表示されているフレームNo（ここではフレームNo.9）の左側に、【２】で入力した数の分だけフレームを追加します。</p>
+			<p><strong>【４】右に追加</strong>：上部に表示されているフレームNo（ここではフレームNo.9）の左側に、【２】で入力した数の分だけフレームを追加します。</p>
+			<p><strong>【５】キャンセル</strong>：フレームを追加しないで、ウィンドウを閉じます。</p>
+			
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+		</div>
+		
+	</main>
+	
+</body>
+</html>

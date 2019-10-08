@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+	<meta name="robots" content="noindex">
+    <title>ぷりおアニメーカー｜ジェリーゼリー</title>
+    <link rel="shortcut icon" href="https://priani.jellyjelly.site/favicon.ico">
+    <link rel="stylesheet" href="css/maker.css">
+    <script type="text/javascript" src="js/PrianiOld.js"></script>
+	<script type="text/javascript" src="js/help.js"></script>
+	<script type="text/javascript" src="js/makerPriani.js"></script>
+    <script type="text/javascript" src="js/default.json"></script>
+</head>
+
+<body onload="loadPriani('default');stopPriani();startMaker();logSet();windowOrderGo();">
+
+<h1>ぷりおアニメーカー</h1>	
+
+<!-- ヘルプ用ウィンドウ -->
+<div id="helpWindow" class="setWindow" style="width: 600px;height: 600px;z-index: 2;visibility: hidden; background-color: white;resize: both;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="helpWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle" style="background-color: cornflowerblue;">ヘルプ</div>
+	<div id="helpMessage" style="width: auto;height: auto;resize: both;">
+	</div>
+</div>		
+	
+<!-- アラート用ウィンドウ -->
+<div id="alertWindow" class="alert">
+	<div id="alertMessage">
+		アラートメッセージ
+	</div>
+	<br>
+	<input type="button" value="ＯＫ" onclick="alertWindow.style.visibility='hidden';" class="alertButton">
+</div>	
+
+<!-- 確認アラート用ウィンドウ -->
+<div id="alertConfirmWindow" class="alert">
+</div>		
+	
+<!-- メニュー -->
+<div id="menu" style="background-color: white; border:1px solid gray; position: fixed;top: 5px;left: 5px;z-index: 25;padding: 3px;">
+	<details role="group" class="menu" id="menuTop">
+		<summary style="outline: none;display: block;" role="button"><span style="cursor: pointer">メニュー</span></summary>
+		<div style="margin: 15px;">
+			・<a style="cursor: pointer" onclick="windowView('dataWindow')">ぷりアニデータの読み込み/書き出し</a><br>
+			・<a style="cursor: pointer" onclick="windowView('basicWindow')">ぷりアニデータの設定</a>
+			<hr>
+			・<a style="cursor: pointer" onclick="windowView('exportJSONWindow')">JSONデータの書き出し</a><br>
+			・<a style="cursor: pointer" onclick="windowView('editJSONWindow')">JSONデータの編集</a><br>
+			・<a style="cursor: pointer" onclick="windowView('inportJSONWindow')">JSONデータの読み込み</a>
+			<hr>
+			・<a style="cursor: pointer" onclick="windowView('spriteExportWindow')">スプライト画像の書き出し</a><br>
+			<hr>
+			・<a style="cursor: pointer" onclick="windowView('configWindow')">オプション</a><br>
+			・<a style="cursor: pointer" onclick="windowView('windowOrder')">ウィンドウの整列</a><br>
+			・<a style="cursor: pointer" onclick="windowView('dataRefresh')">ストックデータの削除</a>
+			<hr>
+			・<a style="cursor: pointer" onclick="windowView('helpWindow')">ヘルプ</a><br>
+			・<a style="cursor: pointer" onclick="alertPop(verInfo);">バージョン情報</a>
+		</div>
+	</details>
+</div>
+	
+<!-- UNDO/REDOボタン -->
+<div style="position: fixed;top: 0px;left:100px;z-index: 25; padding: 3px;">
+	<img src="img/undo.png" class="buttonIcon" onclick="undoRedo('undo');" alt="UNDO" title="UNDO（取り消し）">
+	<img src="img/redo.png" class="buttonIcon" onclick="undoRedo('redo');" alt="REDO" title="REDO（やり直し）">
+</div>
+	
+<!-- 戻るボタン -->
+<!--
+<a href="index.htm">
+	<img src="img/backButton.png" width="40" height="40" style="position:fixed;top:2px;right:2px;z-index:25;cursor:pointer;" class="backIcon" alt="ぷりおアニメーカー公式サイトに戻る" title="ぷりおアニメーカー公式サイトに戻る"></a>
+-->
+
+<!-- ログ・ウィンドウ -->	
+<div class="setWindow" id="logWindow" style="width: 45%;height: auto;top: 900px;left:500px;z-index: 3;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="helpView('ログウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<div class="setTitle">ログ</div> 
+	<div style="color: lightsteelblue;left:100px;top: 5px; position: absolute;">処理状況：<input type="text" id="nowStateText" size="2" style="background-color: lightslategray;color: white;" readonly></div>
+	<input id="logSetButton" type="button" value="下に固定" onclick="logSet();" style="left: 300px;top: 2px; position: absolute;"> 
+	<div class="setContent">
+		<textarea id="logText" rows="4" style="width: 100%;background-color: #003366;color: white;" readonly></textarea>
+	</div>
+</div>
+	
+<!-- プレビュー・ウィンドウ -->
+<div class="setWindow" id="canvasWindow" style="width: auto;height: auto;top: 80px;left: 5px;z-index: 1;resize: both;">
+	<img id="canvasWindowDrag" src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="helpView('プレビューウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<div class="setTitle">プレビュー</div>
+	<div class="setContent">
+		<canvas id="cvPriani" style="border: 3px solid #808080;transform-origin: top left;" draggable="true"></canvas><br><div id="canvasSpace"></div>
+		<div style="padding: 5px;background-color: white; border: 2px solid #808080; width: 470px;">
+			回転 <img src="img/r_left.png" class="transIcon" onmousedown="transButtonStart(event,'r',-5);" onmouseup="transButtonEnd();"> <img src="img/r_right.png" class="transIcon"  onmousedown="transButtonStart(event,'r',5);" onmouseup="transButtonEnd();">　
+			拡縮 <img src="img/s0.png" class="transIcon"  onmousedown="transButtonStart(event,'s',-0.05);" onmouseup="transButtonEnd();"> <img src="img/s1.png" class="transIcon"  onmousedown="transButtonStart(event,'s',0.05);" onmouseup="transButtonEnd();">　
+			拡縮X <img src="img/sx0.png" class="transIcon"  onmousedown="transButtonStart(event,'sX',-0.05);" onmouseup="transButtonEnd();"> <img src="img/sx1.png" class="transIcon"  onmousedown="transButtonStart(event,'sX',0.05);" onmouseup="transButtonEnd();">　
+			拡縮Y <img src="img/sy0.png" class="transIcon"  onmousedown="transButtonStart(event,'sY',-0.05);" onmouseup="transButtonEnd();"> <img src="img/sy1.png" class="transIcon"  onmousedown="transButtonStart(event,'sY',0.05);" onmouseup="transButtonEnd();">
+			<br>
+			移動 <img src="img/tlx_left.png" class="transIcon"  onmousedown="transButtonStart(event,'tlX',-1);" onmouseup="transButtonEnd();"><img src="img/tly_up.png" class="transIcon"  onmousedown="transButtonStart(event,'tlY',-1);" onmouseup="transButtonEnd();"><img src="img/tly_down.png" class="transIcon"  onmousedown="transButtonStart(event,'tlY',1);" onmouseup="transButtonEnd();"><img src="img/tlx_right.png" class="transIcon"  onmousedown="transButtonStart(event,'tlX',1);" onmouseup="transButtonEnd();"> 
+			<img src="img/tlx_left2.png" class="transIcon"  onmousedown="transButtonStart(event,'tlX',-5);" onmouseup="transButtonEnd();"><img src="img/tly_up2.png" class="transIcon"  onmousedown="transButtonStart(event,'tlY',-5);" onmouseup="transButtonEnd();"><img src="img/tly_down2.png" class="transIcon"  onmousedown="transButtonStart(event,'tlY',5);" onmouseup="transButtonEnd();"><img src="img/tlx_right2.png" class="transIcon"  onmousedown="transButtonStart(event,'tlX',5);" onmouseup="transButtonEnd();">　
+			不透明度 <img src="img/s0.png" class="transIcon"  onmousedown="transButtonStart(event,'al',-0.05);" onmouseup="transButtonEnd();"> <img src="img/s1.png" class="transIcon"  onmousedown="transButtonStart(event,'al',0.05);" onmouseup="transButtonEnd();">
+		</div>
+		<div>
+			<table>
+				<tr>
+					<td>
+						<input type="button" value="再生" class="button1" onclick="startAnimation();"> <input type="button" value="停止" class="button1" onclick="stopPriani();">
+					</td>
+					
+					<td>
+						表示：<select id="canvasScaleSelect">
+			<option value="2">200%</option>
+			<option value="1.5">150%</option>
+			<option value="1" selected>100%</option>
+			<option value="0.8">80%</option>
+			<option value="0.5">50%</option>
+			</select>　
+			背景：<select id="canvasColorSelect">
+			<option value="transparent" style="background-color: whitesmoke;">普通</option>
+			<option value="white" style="background-color: white;">白</option>
+			<option value="black" style="background-color: black;color: white;">黒</option>
+			<option value="#353535" style="background-color: #353535;color: white;">濃灰</option>
+			<option value="gray" style="background-color: gray;">灰色</option>
+			<option value="orangered" style="background-color: orangered;">朱色</option>
+			<option value="tomato" style="background-color: tomato;">薄赤</option>
+			<option value="darkred" style="background-color: darkred;">濃赤</option>
+			<option value="pink" style="background-color: pink;">桃色</option>
+			<option value="gold" style="background-color: gold;">黄</option>
+			<option value="lemonchiffon" style="background-color: lemonchiffon;">薄黄</option>
+			<option value="orange" style="background-color: orange;">橙</option>
+			<option value="darkseagreen" style="background-color: darkseagreen;">薄緑</option>
+			<option value="darkgreen" style="background-color: darkgreen;">濃緑</option>
+			<option value="yellowgreen" style="background-color: yellowgreen;">黄緑</option>
+			<option value="azure" style="background-color: azure;">薄水</option>
+			<option value="lightskyblue" style="background-color: lightskyblue;">水色</option>
+			<option value="dodgerblue" style="background-color: dodgerblue;">青</option>
+			<option value="steelblue" style="background-color: steelblue;">鈍青</option>
+			<option value="midnightblue" style="background-color: midnightblue;color: white;">紺</option>
+			<option value="mediumpurple" style="background-color: mediumpurple;">紫</option>
+			<option value="deeppink" style="background-color: deeppink;">鮮桃</option>
+			</select>　
+			繰り返し：<select id="canvasRepeatSelect">
+			<option value="ON" selected>ON</option>
+			<option value="OFF">OFF</option>
+			</select><br>
+			フレームNo：<input type="text" id="frameText" size="1" style="background-color: whitesmoke;" readonly>　
+			fps：<input type="text" id="fpsText" size="1" style="background-color: whitesmoke;" readonly>
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+</div>
+
+<!-- パーツ画像・ウィンドウ -->
+<div class="setWindow" id="partWindow" style="width: auto;height: auto;top: 80px;left: 600px;z-index: 1;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="helpView('パーツ画像ウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<div class="setTitle">パーツ画像</div>
+	
+	<div class="setContent">
+		<input id="fileInput" type="file" accept="image/png,image/jpeg,.png,.jpeg" style="background-color: white; padding: 5px;">
+		<input type="button" value="パーツ画像として追加" class="button1" style="font-size: 1em;padding: 2px 8px;" onclick="loadImg();">
+		<div id="imgtest"></div>
+	</div>
+	
+	<input type="button" value="全て開く" onclick="partAllDetails(true);" id="partAllDetailsButton2" style="visibility: hidden"> <input type="button" value="全て閉じる" onclick="partAllDetails(false);" id="partAllDetailsButton1" style="visibility: hidden">　　<input type="button" value="全て選択" onclick="partSelect(-2)" id="partAllSelectButton1" style="visibility: hidden"> <input type="button" value="選択解除" onclick="partSelect(-1)" id="partAllSelectButton2" style="visibility: hidden">
+	
+	<div id="partListDiv" class="setContent">
+	</div>
+	
+	
+</div>
+
+<!-- パーツ画像の差し替えウィンドウ -->	
+<div class="setWindow" id="partSrcChangeWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('パーツ画像の差し替えウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<div class="setTitle">パーツ画像の差し替え</div>
+	<img src="img/hidden.png" onclick="partSrcChangeWindow.style.visibility = 'hidden';" style="right: 5px;top: 5px; position: absolute;" class="transIcon">
+	<div class="setContent">
+		現在のパーツ画像：<input type="text" value="" id="partSrcChangeBefore" readonly style="background-color: whitesmoke;"><br>
+		<input id="partSrcChangefileInput" type="file" accept="image/png,image/jpeg,.png,.jpeg" style="background-color: white; padding: 5px;font-size: 1.1em;margin-top: 10px;"><br>
+		<input type="button" value="パーツ画像の差し替え" class="button1" onclick="partSrcChangeGo();">　
+		<input type="button" value="キャンセル" class="button2" onclick="partSrcChangeWindow.style.visibility='hidden';">
+	</div>
+</div>	
+	
+<!-- タイムライン・ウィンドウ -->
+<div class="setWindow" id="timelineWindow" style="width: auto;height: auto;top: 800px;left:5px;z-index: 1;">
+	<img id="timelineWindowDrag" src="img/space.png" class="dragButton" >
+	<img src="img/help.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="helpView('タイムラインウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<div class="setTitle">タイムライン</div>
+	<div class="setContent" id="timelineListDiv">
+	</div>
+</div>	
+
+<!-- タイムラインの右クリメニュー -->
+<div id="timelineMenuWindow" class="timelineMenu"></div>	
+
+<!-- タイムライン編集ウィンドウ -->	
+<div class="setWindow" id="timelineEditWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('タイムライン編集ウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<div class="setTitle" id="timelineEditTitle">タイムライン編集</div>
+	<img src="img/hidden.png" onclick="timelineEditWindowHidden();" style="right: 5px;top: 5px; position: absolute;" class="transIcon">
+	<div id="timelineEditDiv"></div>
+</div>	
+	
+<!-- ぷりアニデータ設定・ウィンドウ -->
+<div class="setWindow" id="basicWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('ぷりアニデータ設定ウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="basicWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">ぷりアニデータの設定</div>
+	<div class="setContent">
+		<table>
+			<tr>
+				<td>ぷりアニデータID</td>
+				<td>：<input id="basicIdText" type="text" size="10"></td>
+			</tr>
+			<tr>
+				<td>キャンバスサイズ</td>
+				<td>：横 <input id="basicCvxText" type="text" size="4"> × 縦 <input id="basicCvyText" type="text" size="4"></td>
+			</tr>
+			<tr>
+				<td>アニメーション速度(fps)</td>
+				<td>：<input id="basicFpsText" type="text" size="4"></td>
+			</tr>
+		</table>
+	</div>
+	<div style="text-align: center;">
+	<input type="button" value="ＯＫ" class="button1" onclick="basicInput();">　<input type="button" value="キャンセル" class="button2" onclick="basicWindow.style.visibility='hidden';"></div>
+</div>
+
+<!-- データ読み書き・ウィンドウ -->	
+<div class="setWindow" id="dataWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('データ読み書きウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="dataWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">ぷりアニデータの読み込み/書き出し</div>
+	<div class="setContent"><b>ぷりアニデータの読み込み</b><br>
+		<textarea id="inportText" rows="4" cols="50"></textarea>
+		<input type="button" value="読み込み" class="button1" onclick="dataInport();">
+	</div>
+			
+	<div class="setContent"><b>ぷりアニデータの書き出し</b><br>
+		<textarea id="exportText" rows="4" cols="50" readonly></textarea>
+		<input type="button" value="書き出し" class="button3" onclick="dataExport();">
+	</div>
+	
+	<div style="text-align: center;"><input type="button" value="キャンセル" class="button2" onclick="dataWindow.style.visibility='hidden';"></div>
+</div>
+
+<!-- JSONデータ書き出し・ウィンドウ -->
+<div class="setWindow" id="exportJSONWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('JSONデータ書き出しウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="exportJSONWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">JSONデータの書き出し</div>
+	<div class="setContent">
+		<table>
+			<tr>
+				<td>ぷりアニデータID</td>
+				<td>：<input id="jsonIdText" type="text" size="10"></td>
+			</tr>
+			<tr>
+				<td>画像フォルダ</td>
+				<td>：<input id="jsonDirText" type="text" size="10"></td>
+			</tr>
+			<tr>
+				<td>出力形式</td>
+				<td>：<select id="jsonExportTypeSelect">
+					<option value="ティラノスクリプト">ティラノスクリプト</option>
+					<option value="HTML">HTML</option>
+					</select></td>
+			</tr>
+		</table>
+		<input type="button" value="書き出し" onclick="jsonExportGo();" class="button3">
+		<div style="padding-top: 10px;">
+			<textarea id="jsonExportText" rows="15" cols="50" readonly></textarea>
+		</div>
+		<div style="text-align: center;"><input type="button" value="キャンセル" class="button2" onclick="exportJSONWindow.style.visibility='hidden';"></div>
+	</div>
+</div>
+	
+<!-- オプションウィンドウ -->	
+<div class="setWindow" id="configWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('オプションウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="configWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">オプション</div>
+	<div class="setContent">
+		<form name="configForm">
+			<b>データ書き出し時の動作</b><br>
+			<label><input type="radio" name="radioDataExportTime" value="on">自動でクリップボードにコピーする</label><br>
+			<label><input type="radio" name="radioDataExportTime" value="off">自動でクリップボードにコピーしない</label>
+			
+			<div style="text-align: center;">　<br>
+			<input type="button" value="ＯＫ" onclick="makerConfigInput();" class="button1">　<input type="button" value="キャンセル" class="button2" onclick="configWindow.style.visibility='hidden';"></div>
+		</form>
+	</div>
+</div>
+
+
+<!-- JSONデータ編集・ウィンドウ -->
+<div class="setWindow" id="editJSONWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('JSONデータ編集ウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="editJSONWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">JSONデータの編集</div>
+	<div class="setContent">
+		<table>
+			<tr>
+				<td>JSONファイル</td>
+				<td>：<input id="editJSONFileInput" type="file" accept=".json" multiple=true style="background-color: white; padding: 5px;"></td>
+			</tr>
+			<tr>
+				<td>出力形式</td>
+				<td>：<select id="editJSONTypeSelect">
+					<option value="ティラノスクリプト">ティラノスクリプト</option>
+					<option value="HTML">HTML</option>
+					</select></td>
+			</tr>
+		</table>
+		<input type="button" value="読み込み" onclick="readFileJSON();" class="button1">
+		<div id="editJSONList" style="height: 200px;max-width:500px;border: 2px dashed gray;margin: 10px;overflow: scroll;"></div>
+		<input type="button" value="JSONファイルを結合" onclick="bondJSON();" class="button1">
+		<div style="padding-top: 10px;">
+			<textarea id="editJSONExportText" rows="15" cols="50" readonly></textarea>
+		</div>
+		<div style="text-align: center;"><input type="button" value="キャンセル" class="button2" onclick="editJSONWindow.style.visibility='hidden';"></div>
+	</div>
+</div>	
+
+<!-- JSONデータの読み込み・ウィンドウ -->
+<div class="setWindow" id="inportJSONWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('JSONデータの読み込みウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="inportJSONWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">JSONデータの読み込み</div>
+	<div class="setContent">
+		<table>
+			<tr>
+				<td>JSONファイル</td>
+				<td>：<input id="inportJSONFileInput" type="file" accept=".json" style="background-color: white; padding: 5px;"></td>
+			</tr>
+		</table>
+		<input type="button" value="ぷりアニデータとして読み込み" onclick="dataInport2();" class="button1">
+		<div style="padding: 20px;max-width: 450px;"><strong>※注意</strong><br>JSONファイルには画像データが含まれていないので、画像が読み込まれません。JSONデータを読み込んだ後、各パーツ画像の設定画面より「画像を差し替える」をクリックし手動で画像データを読み込む必要があります。</div>
+		<div style="text-align: center;"><input type="button" value="キャンセル" class="button2" onclick="inportJSONWindow.style.visibility='hidden';"></div>
+	</div>
+</div>		
+	
+<!-- パーツ画像の回転軸設定・ウィンドウ -->
+<div class="setWindow" id="axisEditWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('パーツ画像の回転軸設定ウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="axisEditWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">パーツ画像の回転軸設定</div>
+	<div class="setContent">
+		<div style="text-align: center;">
+			<canvas id="axisCanvas" style="border: solid 3px gray;"></canvas>
+		</div>
+		<div>
+			X:<input type="number" id="aXText" size="5" min="0"> / Y:<input type="number" id="aYText" size="5" min="0"><br>
+			<input type="button" value="変更" onclick="axisEditChange();">　
+			<input type="button" value="回転軸を画像の中心に戻す" onclick="axisEditCenter();">
+		</div>
+		<div style="text-align: center;margin-top: 20px;"><input type="button" value="適用" class="button1" onclick="axisEditGo();">　<input type="button" value="キャンセル" class="button2" onclick="axisEditWindow.style.visibility='hidden';"></div>
+	</div>
+</div>			
+
+<!-- スプライト画像の書き出し・ウィンドウ -->
+<div class="setWindow" id="spriteExportWindow" style="width: auto;height: auto;z-index: 2;visibility: hidden;">
+	<img src="img/space.png" class="dragButton">
+	<img src="img/help.png" style="position: absolute; right: 35px; margin-top: -5px;" onclick="helpView('スプライト画像の書き出しウィンドウ');" class="transIcon" alt="ヘルプ" title="ヘルプ">
+	<img src="img/hidden.png" style="position: absolute; right: 5px; margin-top: -5px;" onclick="spriteExportWindow.style.visibility = 'hidden';" class="transIcon">
+	<div class="setTitle">スプライト画像の書き出し</div>
+	<div class="setContent">
+		<div style="text-align: left">
+			横に並べる数：<input id="spriteWidthText" type="number" min="1" max="50" size="10"><br>
+			<input type="button" value="書き出し" class="button1" onclick="spriteExport();">　<input type="button" value="キャンセル" class="button2" onclick="spriteExportWindow.style.visibility='hidden';">
+		</div>
+		<div style="text-align: center;"><canvas id="spriteExportCanvas" width="50" height="50"></canvas></div>
+	</div>
+</div>		
+	
+<!-- 余白用 -->
+<div style="height: 1600px;top: 0px;left: 0px;"></div>
+
+<!--
+-------------------------------------------
+CanvasタグをデータURL化してimgのsrcに適用
+imgタグを指定したDIV内に追加する
+-------------------------------------------
+<div class="setWindow" style="width: auto;height: auto;top: 0px;z-index: 1;" id="testwindow">
+<input type="button" value="URAA" onclick="gogo();">	
+<script>
+	function gogo(){
+		var testwindow = document.getElementById("testwindow");
+		var canvas = document.getElementById("cvPriani");
+		var dataurl = canvas.toDataURL();
+		img = document.createElement("img");
+		img.src = dataurl;
+		img.style.border = "solid 1px black";
+		img.width = 150;
+		img.height = 150;
+		testwindow.appendChild(img);
+	}
+</script>
+</div>
+-------------------------------------------
+-->
+	
+</body>
+</html>

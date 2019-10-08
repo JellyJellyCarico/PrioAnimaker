@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <title>アニメーションを作る方法</title>
+    <link rel="shortcut icon" href="https://priani.jellyjelly.site/favicon.ico">
+    <link rel="stylesheet" href="../../css/index.css">
+</head>
+
+<body>
+	<h1 id="top">アニメーションを作る方法</h1>
+	<main class="box">
+		
+		<div class="mainbox">
+			<p>目次</p>
+			<p>　<a href="#c1" class="backlink"><strong>１　アニメーションを作る基本的な流れ</strong></a></p>
+			<p>　<a href="#c2" class="backlink"><strong>２　タイムライン設定する（プレビューウィンドウ）</strong></a></p>
+			<p>　<a href="#c3" class="backlink"><strong>３　タイムライン設定する（パーツ画像ウィンドウ）</strong></a></p>
+			<p>　<a href="#c4" class="backlink"><strong>４　タイムライン設定する（タイムラインウィンドウ）</strong></a></p>
+			<p>　<a href="#c5" class="backlink"><strong>５　簡易アニメーション補間を使用する</strong></a></p>
+			<hr>
+			
+			<p id="c1"><strong style="background-color: #4c2e00;color: white;padding:2px;">　１　アニメーションを作る基本的な流れ　</strong></p>
+			<p>ぷりおアニメーカーは、パラパラ漫画の要領で、フレームをNo.0から順に高速でパラパラすることでアニメーションさせます。</p>
+			<p><img src="anim1.png" style="max-width: 100%;height:auto;"></p>
+			<p>各フレームの<span class="point1">タイムライン設定</span>を編集して、各パーツ画像を変形させて各フレームを作っていくことで、アニメーションを作成していきます。</p>
+			<p>基本的には、要所要所のフレームのみを自分で変形させ、間のフレームは<span class="point1">アニメーション補間</span>で自動的に変形させる方法をとっていきます。</p>
+			<p>上の例ですと、フレームNo.2のみ自分で変形して編集し、No.1とNo.3は<span class="point1">簡易アニメーション補間</span>で変形させています。</p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="c2"><strong style="background-color: #4c2e00;color: white;padding:2px;">　２　タイムライン設定する（プレビューウィンドウ）　</strong></p>
+			<p><img src="anim2.png" style="max-width: 100%;height:auto;"></p>
+			<p>プレビューウィンドウの操作ボタンを長押しすることで、タイムライン設定を編集し、パーツ画像を変形できます。</p>
+			<p>通常は全てのパーツ画像を操作しますが、タイムラインウィンドウの<img src="../../img/part0.png">をクリックしてパーツ画像を選択することで、選択したパーツ画像のみを操作することもできます。</p>
+			<p><img src="anim2_2.png" style="max-width: 100%;height:auto;"></p>
+			<p>▲例えばこのようにパーツ画像番号1のleg_r.pngを選択すると…</p>
+			<p><img src="anim2_3.png" style="max-width: 100%;height:auto;"></p>
+			<p>▲選択したパーツのみを操作ボタンで変形できます。</p>
+			<p>　</p>
+			<p>　・参考<a href="../maker_description/preview.htm" class="backlink" style="text-decoration-line: underline;">【プレビューウィンドウの詳細】</a></p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="c3"><strong style="background-color: #4c2e00;color: white;padding:2px;">　３　タイムライン設定する（パーツ画像ウィンドウ）　</strong></p>
+			<p>パーツ画像ウィンドウからも数値入力でタイムライン設定を編集できます。</p>
+			<p><img src="anim3.png" style="max-width: 100%;height:auto;"></p>
+			<p>編集したいパーツ画像の設定画面を開き、タイムライン設定の部分の数値を編集していきます。</p>
+			<p><img src="anim3_2.png" style="max-width: 100%;height:auto;"></p>
+			<p>数値を編集したら適用ボタンをクリックすると、編集が適用され、プレビューにも反映されます。</p>
+			<p><img src="anim3_3.png" style="max-width: 100%;height:auto;"></p>
+			<p><strong>★数値の入力の仕方</strong></p>
+			<p>
+			
+			　・<strong>拡縮</strong>：拡大率の設定で、デフォルトは「1」です。2倍にする時は「2」、0.5倍にする時は「0.5」と入力します。Xは幅の拡大率、Yは高さの拡大率です。<br><br>
+			　・<strong>移動</strong>：基本設定の表示位置からの移動距離で、デフォルトは「0」です。Xは横の移動で、正の数字だと右に、負の数字だと左に移動します。Yは縦の移動で、正の数字だと下に、負の数字だと上に移動します。単位はpxです。<br><br>
+			　・<strong>回転</strong>：回転する角度で、デフォルトは「0」です。例えば、右に45度傾ける場合は「45」、左に45度傾ける場合は「-45」と入力します。<br><br>
+			　・<strong>不透明度</strong>：不透明度の設定で、デフォルトは「1」です。「0～1」の範囲で設定します。「0」で完全な透明、「1」で完全な不透明、「0.5」などで半透明になります。<br><br>
+			　・<strong>表示ページ</strong>：表示するページの設定で、デフォルトは「0」です。パーツ画像が「横に並んだスプライト画像」の場合に設定する項目です。そうでない場合は特に設定は不要です。<a href="../maker_description/part.htm#page" class="backlink" style="text-decoration-line: underline;">【表示ページについて】</a>
+			</p>
+			<p>　</p>
+			<p>　・参考<a href="../maker_description/part.htm" class="backlink" style="text-decoration-line: underline;">【パーツ画像ウィンドウの詳細】</a></p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="c4"><strong style="background-color: #4c2e00;color: white;padding:2px;">　４　タイムライン設定する（タイムラインウィンドウ）　</strong></p>
+			<p>タイムラインウィンドウで、編集したい箇所を右クリックして<span class="point1">タイムライン設定の編集</span>をクリックすると、数値入力によるタイムライン設定ができます。</p>
+			<p><img src="anim4.png" style="max-width: 100%;height:auto;"></p>
+			<p>▼ドラッグすると複数の箇所を選択して、まとめてタイムライン設定を編集することもできます。</p>
+			<p><img src="anim4_3.png" style="max-width: 100%;height:auto;"></p>
+			<p>▼編集したい部分だけ入力して、<span class="point1">代入する</span>をクリックすると</p>
+			<p><img src="anim4_2.png" style="max-width: 100%;height:auto;"></p>
+			<p>▼選択した範囲を一気に編集できます。</p>
+			<p><img src="anim4_4.png" style="max-width: 100%;height:auto;"></p>
+			<p>▲編集された部分は<img src="../../img/timeline0.png" width="20" height="20">が<img src="../../img/timeline1.png" width="20" height="20">へと変化しています。</p>
+			<p>　</p>
+			<p>　・参考<a href="../maker_description/time.htm" class="backlink" style="text-decoration-line: underline;">【タイムラインウィンドウの詳細】</a></p>
+			<p>　・参考<a href="../maker_description/time.htm#edit" class="backlink" style="text-decoration-line: underline;">【タイムライン設定の編集の詳細】</a></p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			<hr>
+			
+			<p id="c5"><strong style="background-color: #4c2e00;color: white;padding:2px;">　５　簡易アニメーション補間を使用する　</strong></p>
+			<p>タイムラインウィンドウの<span class="point1">簡易アニメーション補間</span>を使うと、フレームとフレームの間のアニメーションを自動で作成できます。</p>
+			<p>▼例えば下の状態は、フレームNo.4だけ編集済みの状態です。</p>
+			<p><img src="anim5_2.png" style="max-width: 100%;height:auto;"></p>
+			<p>▼つまり、フレームNo.0～3は静止状態で、No.4でいきなり変形する状態です。</p>
+			<p><img src="anim5.png" style="max-width: 100%;height:auto;"></p>
+			<p>▼そこで、フレームNo.1～3の全パーツ部分をドラッグして、右クリックし、<span class="point1">簡易アニメーション補間</span>をクリックすると…</p>
+			<p><img src="anim5_3.png" style="max-width: 100%;height:auto;"></p>
+			<p>▼このようにフレームNo.1～3の動きが、前後のフレームの動きを補完するように、自動で編集されます。</p>
+			<p><img src="anim5_4.png" style="max-width: 100%;height:auto;"></p>
+			<p>これでアニメーションが滑らかになりました！</p>
+			<p>ちなみに<span class="point1">簡易アニメーション補間</span>では、補間タイプが<span class="point1">減速</span>になっています。<br>
+			つまり最初は動きが大きく、徐々に動きが減っていくように補間されます。</p>
+			<p>減速以外の補間タイプを使用したい場合は、簡易ではない<span class="point1">アニメーション補間</span>の方をクリックすると、補間タイプなどを設定してアニメーションを作成できます。</p>
+			<p>なお、減速以外には<span class="point1">等速</span>と<span class="point1">加速</span>があります。</p>
+			<p>　・参考<a href="../maker_description/time.htm#anim" class="backlink" style="text-decoration-line: underline;">【アニメーション補間の詳細】</a></p>
+			<p class="totop"><a href="#top" class="backlink" style="text-decoration-line: underline;">▲一番上に戻る</a></p>
+			
+		</div>
+		
+	</main>
+	
+</body>
+</html>
